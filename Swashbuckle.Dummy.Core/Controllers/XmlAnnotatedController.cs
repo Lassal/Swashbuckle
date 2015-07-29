@@ -11,6 +11,9 @@ namespace Swashbuckle.Dummy.Controllers
         /// <summary>
         /// Registers a new Account based on <paramref name="account"/>.
         /// </summary>
+        /// <summary xml:lang="pt-BR">
+        /// Registra uma nova conta baseada em <paramref name="account"/>.
+        /// </summary>
         /// <remarks>Create an <see cref="Account"/> to access restricted resources</remarks>
         /// <param name="account">Details for the account to be created</param>
         /// <response code="201"><paramref name="account"/> created</response>
@@ -22,6 +25,9 @@ namespace Swashbuckle.Dummy.Controllers
 
         /// <summary>
         /// Updates a SubAccount.
+        /// </summary>
+        /// <summary xml:lang="pt-BR">
+        /// Atualiza uma subconta (SubAccount)
         /// </summary>
         [HttpPut]
         public int UpdateSubAccount(SubAccount account)
@@ -81,10 +87,16 @@ namespace Swashbuckle.Dummy.Controllers
         /// <summary>
         /// The maximum number of accounts to return
         /// </summary>
+        /// <summary xml:lang="pt-BR">
+        /// O número máximo de contas que podem ser retornadas
+        /// </summary>
         public int Limit { get; set; }
 
         /// <summary>
         /// Offset into the result
+        /// </summary>
+        /// <summary xml:lang="pt-BR">
+        /// Deslocamento (offset) do resultado
         /// </summary>
         public int Offset { get; set; }
     }
@@ -92,20 +104,32 @@ namespace Swashbuckle.Dummy.Controllers
     /// <summary>
     /// Account details
     /// </summary>
+    /// <summary xml:lang="pt-BR">
+    /// Detalhes da conta
+    /// </summary>
     public class Account
     {
         /// <summary>
         /// The ID for Accounts is 5 digits long.
+        /// </summary>
+        /// <summary xml:lang="pt-BR">
+        /// O ID para a conta é inteiro de 5 digitos
         /// </summary>
         public virtual int AccountID { get; set; }
         
         /// <summary>
         /// Uniquely identifies the account
         /// </summary>
+        /// <summary xml:lang="pt-BR">
+        /// Identifica unicamente a conta
+        /// </summary>
         public string Username { get; set; }
 
         /// <summary>
         /// For authentication
+        /// </summary>
+        /// <summary xml:lang="pt-BR">
+        /// Senha para autenticação
         /// </summary>
         public string Password { get; set; }
 

@@ -188,6 +188,17 @@ namespace Swashbuckle.Application
             ModelFilter(() => new ApplyXmlTypeComments(filePath));
         }
 
+        public void IncludeXmlComments(string filePath, CultureInfo specificCulture)
+        {
+            OperationFilter(() => new ApplyXmlActionComments(filePath, specificCulture));
+            ModelFilter(() => new ApplyXmlTypeComments(filePath, specificCulture));
+        }
+
+        public void IncludeXmlCommentsCurrentCulture(string filePath) 
+        {
+            this.IncludeXmlComments(filePath, CultureInfo.CurrentCulture);
+        }
+
         public void ResolveConflictingActions(Func<IEnumerable<ApiDescription>, ApiDescription> conflictingActionsResolver)
         {
             _conflictingActionsResolver = conflictingActionsResolver;

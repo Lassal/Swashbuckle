@@ -8,6 +8,9 @@
             <summary>
             Registers a new Account based on <paramref name="account"/>.
             </summary>
+            <summary xml:lang="pt-BR">
+            Registra uma nova conta baseada em <paramref name="account"/>.
+            </summary>
             <remarks>Create an <see cref="T:Swashbuckle.Dummy.Controllers.Account"/> to access restricted resources</remarks>
             <param name="account">Details for the account to be created</param>
             <response code="201"><paramref name="account"/> created</response>
@@ -16,6 +19,9 @@
         <member name="M:Swashbuckle.Dummy.Controllers.XmlAnnotatedController.UpdateSubAccount(Swashbuckle.Dummy.Controllers.SubAccount)">
             <summary>
             Updates a SubAccount.
+            </summary>
+            <summary xml:lang="pt-BR">
+            Atualiza uma subconta (SubAccount)
             </summary>
         </member>
         <member name="M:Swashbuckle.Dummy.Controllers.XmlAnnotatedController.Search(System.Collections.Generic.IEnumerable{System.String})">
@@ -49,30 +55,48 @@
             <summary>
             The maximum number of accounts to return
             </summary>
+            <summary xml:lang="pt-BR">
+            O número máximo de contas que podem ser retornadas
+            </summary>
         </member>
         <member name="P:Swashbuckle.Dummy.Controllers.Page.Offset">
             <summary>
             Offset into the result
+            </summary>
+            <summary xml:lang="pt-BR">
+            Deslocamento (offset) do resultado
             </summary>
         </member>
         <member name="T:Swashbuckle.Dummy.Controllers.Account">
             <summary>
             Account details
             </summary>
+            <summary xml:lang="pt-BR">
+            Detalhes da conta
+            </summary>
         </member>
         <member name="P:Swashbuckle.Dummy.Controllers.Account.AccountID">
             <summary>
             The ID for Accounts is 5 digits long.
+            </summary>
+            <summary xml:lang="pt-BR">
+            O ID para a conta é inteiro de 5 digitos
             </summary>
         </member>
         <member name="P:Swashbuckle.Dummy.Controllers.Account.Username">
             <summary>
             Uniquely identifies the account
             </summary>
+            <summary xml:lang="pt-BR">
+            Identifica unicamente a conta
+            </summary>
         </member>
         <member name="P:Swashbuckle.Dummy.Controllers.Account.Password">
             <summary>
             For authentication
+            </summary>
+            <summary xml:lang="pt-BR">
+            Senha para autenticação
             </summary>
         </member>
         <member name="P:Swashbuckle.Dummy.Controllers.Account.AccountPreferences.DisplayName">

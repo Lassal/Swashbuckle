@@ -7,6 +7,8 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Description;
 using System.Xml.XPath;
 using Swashbuckle.Swagger;
+using System.Globalization;
+using System.Xml;
 
 namespace Swashbuckle.Swagger.XmlComments
 {
@@ -17,8 +19,24 @@ namespace Swashbuckle.Swagger.XmlComments
         private const string RemarksExpression = "remarks";
         private const string ParameterExpression = "param";
         private const string ResponseExpression = "response";
+        private bool I18nEnabled = false;
+        private string LocalizedSummaryExpression = null;
+        private XmlNamespaceManager _namespaceManager;
         
         private readonly XPathNavigator _navigator;
+
+        public ApplyXmlActionComments(string xmlCommentsPath, CultureInfo culture)
+        {
+            if (culture != null)
+            {
+                this.I18nEnabled = true;
+                this.LocalizedSummaryExpression = String.Format("summary[@xml:lang='{0}']", culture.Name);
+            }
+            _navigator = new XPathDocument(xmlCommentsPath).CreateNavigator();
+            this._namespaceManager = new XmlNamespaceManager(this._navigator.NameTable);
+            this._namespaceManager.AddNamespace("xml", "http://www.w3.org/XML/1998/namespace");
+
+        }
 
         public ApplyXmlActionComments(string xmlCommentsPath)
         {
@@ -30,7 +48,8 @@ namespace Swashbuckle.Swagger.XmlComments
             var methodNode = _navigator.SelectSingleNode(XPathFor(apiDescription.ActionDescriptor));
             if (methodNode == null) return;
 
-            var summaryNode = methodNode.SelectSingleNode(SummaryExpression);
+            var summaryNode = this.GetSummaryNode(methodNode);
+                //methodNode.SelectSingleNode(SummaryExpression);
             if (summaryNode != null)
                 operation.summary = summaryNode.ExtractContent();
 
@@ -98,6 +117,20 @@ namespace Swashbuckle.Swagger.XmlComments
                     operation.responses[statusCode] = response;
                 }
             }
+        }
+
+        private XPathNavigator GetSummaryNode(XPathNavigator methodNode)
+        {
+            XPathNavigator summaryNode = null;
+
+            if(this.I18nEnabled)
+            {
+                summaryNode = methodNode.SelectSingleNode(this.LocalizedSummaryExpression, this._namespaceManager);
+                if (summaryNode != null)
+                    return summaryNode;
+            }
+
+            return methodNode.SelectSingleNode(SummaryExpression);
         }
     }
 }
